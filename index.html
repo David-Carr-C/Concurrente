@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programación concurrente · Ejercicios</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#inicio">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      Concurrencia
+    </a>
+    <span class="muted">Ejercicios de programación concurrente</span>
+  </header>
+
+  <div class="layout">
+    <aside id="nav" aria-label="Ejercicios"></aside>
+    <main id="main"></main>
+  </div>
+
+  <template id="tpl-inicio">
+    <p class="crumb">Inicio</p>
+    <h1>Ejercicios de programación concurrente</h1>
+    <p class="lead">Cada ejercicio original (Python o Java) está portado a JavaScript para ejecutarlo aquí mismo. Puedes avanzar evento por evento, ver el arranque de <code>main()</code> paso a paso y los mensajes que viajan por cada canal.</p>
+    <div class="cards" data-k="cards"></div>
+  </template>
+
+  <template id="tpl-ej">
+    <p class="crumb"><a href="#inicio">Ejercicios</a> / <span data-k="crumb"></span></p>
+    <h1 data-k="titulo"></h1>
+    <p class="lead" data-k="resumen"></p>
+    <div class="badges">
+      <span class="badge" data-k="badge"></span>
+      <span class="badge" data-k="lenguaje"></span>
+      <code class="file" data-k="archivo"></code>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-h">
+          <h3>Arranque paso a paso</h3>
+          <p>Lo que hace <code>main()</code>, en orden. Toca un paso para saltar a él.</p>
+        </div>
+        <div class="card-b"><ol class="steps" data-k="pasos"></ol></div>
+        <div class="card-b sep">
+          <h4>Conceptos</h4>
+          <ul class="list" data-k="conceptos"></ul>
+          <h4>Análisis y correcciones</h4>
+          <ul class="list" data-k="notas"></ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-h">
+          <h3>Ejecución</h3>
+          <p id="estado">Preparando…</p>
+        </div>
+        <div class="card-b">
+          <div class="toolbar">
+            <button class="btn primary" id="play">▶ Ejecutar</button>
+            <button class="btn" id="atras" aria-label="Paso anterior" title="Paso anterior (←)">⏮</button>
+            <button class="btn" id="paso" aria-label="Paso siguiente" title="Paso siguiente (→)">⏭ Paso</button>
+            <button class="btn" id="fin" title="Mostrar todo">⏩ Todo</button>
+            <button class="btn ghost" id="reiniciar">↺ Reiniciar</button>
+          </div>
+          <div class="toolbar">
+            <label>Velocidad
+              <select id="vel"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="5">5×</option></select>
+            </label>
+            <label>Semilla <input id="semilla" type="number" min="1" value="1"></label>
+            <button class="btn ghost" id="azar" title="Semilla aleatoria">🎲</button>
+            <label class="check"><input id="ver" type="checkbox" checked> Ver mensajes</label>
+            <span data-k="opciones" class="toolbar-inline"></span>
+          </div>
+          <div class="term" id="term"></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card code">
+      <div class="card-h row">
+        <h3>Código</h3>
+        <div class="tabs" role="tablist">
+          <button role="tab" id="tab-orig" aria-selected="true">Original</button>
+          <button role="tab" id="tab-js" aria-selected="false">JavaScript</button>
+        </div>
+      </div>
+      <div class="card-b"><pre id="codigo"></pre></div>
+    </section>
+
+    <nav class="pager">
+      <a class="btn" data-k="prev"></a>
+      <a class="btn" data-k="next"></a>
+    </nav>
+  </template>
+
+  <script src="assets/sim.js"></script>
+  <script src="assets/ejercicios.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
